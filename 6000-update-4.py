@@ -231,7 +231,7 @@ print('\n6000 is a game where you try to figure out a six letter word by making\
       'and then receiving points for word guesses\n'
       '(first two letter, then three, four, five, and finally six letter word guesses)\n')
 
-target_list = openfile('words.txt') #create target word list forms words.txt
+target_list = openfile('6letter.txt') #create target word list forms words.txt
 
 target = choose_target_word(target_list) #choose target word from list
 
