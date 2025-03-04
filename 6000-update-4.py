@@ -86,7 +86,7 @@ def guess (glc, check, g_c , n_o): #function to make guess, glc is guess_letter_
                 valid_guess = parse(guess)
                 return valid_guess
 
-        else: # if not match is found in the check list
+        else: # if no match is found in the check list
             print('Your guess is not an English word. Try again')
 
 #======================================== SCORING FUNCTION =============================================================
@@ -231,7 +231,7 @@ print('\n6000 is a game where you try to figure out a six letter word by making\
       'and then receiving points for word guesses\n'
       '(first two letter, then three, four, five, and finally six letter word guesses)\n')
 
-target_list = openfile('6letter.txt') #create target word list forms words.txt
+target_list = openfile('6letterEasy.txt') #create target word list forms words.txt
 
 target = choose_target_word(target_list) #choose target word from list
 
@@ -239,7 +239,10 @@ target = choose_target_word(target_list) #choose target word from list
 
 target_letters = parse(target) #separate letters out in target word
 
-print(target_letters) # for testing purposes only
+# Reveal is for displaying target word at the end of the game, this code visualized it the same way as the guess grid
+reveal = '--------------------------------\n| '+target_letters[0].upper()+'  '+target_letters[1].upper()+'  '+target_letters[2].upper()+'  '+target_letters[3].upper()+'  '+target_letters[4].upper()+'  '+target_letters[5].upper()+' |'
+
+print(reveal) # for testing purposes only
 
 build_guess_grid(guess1, score1, guess2, score2, guess3, score3, guess4, score4, guess5, score5, guess6, score6,
                   guess7, score7, guess8, score8, guess9, score9, guess10, score10, guess11, score11, guess12, score12)
@@ -462,7 +465,7 @@ guess_count+=1
 
 num_offset = 0 # setting offset to 0 for guess 11
 
-six_letter_list = openfile('6letter.txt') #create 6 letter word list
+six_letter_list = openfile('6letterEasy.txt') #create 6 letter word list
 
 guess11_letters = guess(guess_letter_count, six_letter_list, guess_count, num_offset)
 
@@ -481,6 +484,9 @@ if score11 >= 6000:
     build_guess_grid(guess1, score1, guess2, score2, guess3, score3, guess4, score4, guess5, score5, guess6,
                      score6, guess7, score7, guess8, score8, guess9, score9, guess10, score10, guess11, score11,
                      guess12, score12)
+    reveal = '| '+target_letters[0].upper()+'  '+target_letters[1].upper()+'  '+target_letters[2].upper()+'  '+target_letters[3].upper()+'  '+target_letters[4].upper()+'  '+target_letters[5].upper()+' |'
+    
+    print(reveal) # prints the target word in the format of the guess grid
     print('\nWINNER! 6000 master are you. And quick too!')
 
     sys.exit()
@@ -513,15 +519,19 @@ if score12 >= 6000:
     build_guess_grid(guess1, score1, guess2, score2, guess3, score3, guess4, score4, guess5, score5, guess6,
                      score6, guess7, score7, guess8, score8, guess9, score9, guess10, score10, guess11, score11,
                      guess12, score12)
-
+    
+    
+    print(reveal) # prints the target word in the format of the guess grid
     print('\nWINNER! 6000 master are you.')
 
     sys.exit()
 
-#-----------------------------------------------------------------------------------------------------------------------
+#----------------------------------------- LOSING LOGIC ------------------------------------------------------------------
 
 build_guess_grid(guess1, score1, guess2, score2, guess3, score3, guess4, score4, guess5, score5, guess6, score6,
                   guess7, score7, guess8, score8, guess9, score9, guess10, score10, guess11, score11, guess12, score12)
 
+
+print(reveal) # prints the target word in the format of the guess grid
 if score12 < 6000:
-    print(target.upper(),'\n\nyou didn\'t make it. MAMA LUIGI')
+    print('\nyou didn\'t make it. MAMA LUIGI')
